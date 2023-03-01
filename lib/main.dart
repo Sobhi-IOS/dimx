@@ -38,7 +38,6 @@ class MyApp extends StatelessWidget {
         translations: AppLocale(),
         debugShowCheckedModeBanner: false,
         home: const LaunchScreen(),
-        // home: const OnBoardingScreen(),
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
               centerTitle: true,
