@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1058052372087",
+    "project_id": "dimax-b1ee3",
+    "storage_bucket": "dimax-b1ee3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058052372087:android:30245e451814cc843ff872",
+        "android_client_info": {
+          "package_name": "com.store.dimax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058052372087-km0mt13aq8nj876q3d71virjn2qrsb5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzfpEX8dEBu3pEcsyOCGaucVMx7aaX-aA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058052372087-km0mt13aq8nj876q3d71virjn2qrsb5q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1058052372087-gmvjvttof2ok0m1k3joncdfshlu2lrns.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.store.dimax"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
