@@ -42,7 +42,9 @@ class AuthGetController extends GetxController with Helper {
   }
 
 
-  Future<bool> register({ required String name, required String email, required String mobile, required String password, required String address, required String gender, required String dob, required String passwordConfirmation,}) async {
+  Future<bool> register({ required String name, required String email, required String mobile, required String password, required String address, required String? gender, required String dob, required String passwordConfirmation,}) async {
+
+
     if (await checkInternet(Get.context)) {
       showCustomDialog(context: Get.context, title: 'register'.tr, description: 'login_msg'.tr,);
       bool status = await apiController.register( name: name, email: email, mobile: mobile, password: password, address: address, gender: gender, dob: dob, passwordConfirmation: passwordConfirmation);
@@ -83,8 +85,22 @@ class AuthGetController extends GetxController with Helper {
     return status;
   }
 
-  Future<bool> updateUserProfile({required String name, required String email, required String mobile, required String address, required String gender, required String dob, required String image}) async{
+
+
+  Future<bool> removeAccount({required String currentPassword,required String newPassword}) async {
     bool status = false;
+    if(await checkInternet(Get.context)) {
+      showCustomDialog(context: Get.context, title: 'remove_account'.tr, description:  'login_msg'.tr,);
+      status = await apiController.removeAccount(currentPassword: currentPassword, newPassword: newPassword);
+      dismissDialog(context: Get.context);
+    }
+    return status;
+  }
+
+
+  Future<bool> updateUserProfile({required String name, required String email, required String mobile, required String address, required String? gender, required String dob, required String image}) async{
+    bool status = false;
+    print('getx controller');
     if(await checkInternet(Get.context)) {
       showCustomDialog(context: Get.context,
         title: 'edit_profile'.tr,

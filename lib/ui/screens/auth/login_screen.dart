@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> with Helper{
 
             SizedBox(height: 45.h),
 
-            SvgPicture.asset('assets/svg/logo_blue.svg', height: 83.h, width: 61.21.w,),
+            SvgPicture.asset('assets/svg/logo.svg', height: 83.h, width: 61.21.w,),
 
             SizedBox(height: 80.h),
 

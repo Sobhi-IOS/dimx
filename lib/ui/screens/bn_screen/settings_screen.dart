@@ -9,7 +9,9 @@ import 'package:dimax/ui/screens/app/policy_screen.dart';
 import 'package:dimax/ui/screens/auth/change_password_screen.dart';
 import 'package:dimax/ui/screens/auth/contact_us_screen.dart';
 import 'package:dimax/ui/screens/auth/login_screen.dart';
+import 'package:dimax/ui/screens/auth/remove_account.dart';
 import 'package:dimax/ui/screens/auth/update_user_profile_screen.dart';
+import 'package:dimax/ui/screens/bn_screen/home_screen.dart';
 import 'package:dimax/ui/screens/bn_screen/main_screen.dart';
 import 'package:dimax/ui/widgets/app_text_widget.dart';
 import 'package:dimax/ui/widgets/profile_widget.dart';
@@ -132,6 +134,15 @@ class ProfileSettingsScreen extends StatelessWidget {
               trailingIcon: Icons.arrow_forward_ios,
               onTap:(){Get.to(CondationScreen());},
 
+            ),
+
+            Visibility(
+              visible: SharedPreferencesController().loggedIn,
+              child: SettingWidget(
+                  label: 'remove_account'.tr,
+                  leading:  Icon(Icons.delete,size: 25.h),
+                  onTap: () =>Get.to(const RemoveAccountScreen())
+              ),
             ),
 
             Visibility(

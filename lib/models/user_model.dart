@@ -31,7 +31,7 @@ class UserModel {
     image = json['image'];
     code = json['code'];
     dob = json['dob'];
-    gender = json['gender'];
+    gender = json['gender'].toString();
     fcmToken = json['fcm_token'];
     type = json['type'];
     address = json['address'];

@@ -25,6 +25,7 @@ class ApiController extends ApiHelper{
   Future login(context, {required String email, required String password, String? fcmToken}) async {
     var body = {'email': email, 'password': password, 'fcm_token': fcmToken};
     var response = await http.post(getUrl(ApiSettings.login), body: body,headers: header);
+    print(jsonDecode(response.body));
     if (isSuccessRequest(response.statusCode)) {
       UserModel userModel = UserModel.fromJson(jsonDecode(response.body)['data']);
       switch (jsonDecode(response.body)['data']['type']) {
@@ -46,17 +47,22 @@ class ApiController extends ApiHelper{
     return null;
   }
 
-  Future<bool> register({required String name, required String email, required String mobile, required String password, required String address, required String gender, required String dob, required String passwordConfirmation,}) async {
+  Future<bool> register({required String name, required String email, required String mobile, required String password, required String address, required String? gender, required String dob, required String passwordConfirmation,}) async {
     var body = {
       'name': name,
       'email': email,
       'mobile': mobile,
       'password': password,
       'address': address,
-      'gender': gender,
-      'dob': dob,
       'password_confirmation': passwordConfirmation,
     };
+
+    if(dob.isNotEmpty){
+      body['dob'] = dob;
+    }
+    if(gender != null){
+      body['gender'] = gender;
+    }
 
     var response = await http.post(getUrl(ApiSettings.register), body: body,headers: baseHeader);
     if (isSuccessRequest(response.statusCode)) {
@@ -84,6 +90,8 @@ class ApiController extends ApiHelper{
     return false;
   }
 
+
+
   Future<bool> resetPassword({required String code, required String password}) async {
     var response = await http.post(
       getUrl(ApiSettings.resetPassword),
@@ -96,6 +104,29 @@ class ApiController extends ApiHelper{
     } else if (response.statusCode != 500) {
       showMessage(Get.context, response, error: true);
     } else {
+      handleServerError(Get.context);
+    }
+    return false;
+  }
+
+  Future<bool> removeAccount({required String currentPassword, required String newPassword}) async {
+    var response = await http.post(
+        getUrl(ApiSettings.removeAccount),
+        body: {
+          'current_password': currentPassword,
+          'password': newPassword,
+          'password_confirmation': newPassword,
+        },
+        headers: header
+    );
+    if (isSuccessRequest(response.statusCode)) {
+      showMessage(Get.context, response, error: false);
+      return true;
+    }
+    else if (response.statusCode != 500) {
+      showMessage(Get.context, response, error: true);
+    }
+    else {
       handleServerError(Get.context);
     }
     return false;
@@ -124,21 +155,28 @@ class ApiController extends ApiHelper{
     return false;
   }
 
-  Future<void> updateUserProfile({ required String name, required String email, required String mobile, required String address, required String gender, required String dob, required String image, required Function(UserModel? user) uploadEvent}) async {
+  Future<void> updateUserProfile({ required String name, required String email, required String mobile, required String address, required String? gender, required String dob, required String image, required Function(UserModel? user) uploadEvent}) async {
     var request = http.MultipartRequest('POST', getUrl(ApiSettings.updateUserProfile),);
     request.headers.addAll(header);
     request.fields['name'] = name;
     request.fields['email'] = email;
     request.fields['mobile'] = mobile;
     request.fields['address'] = address;
-    request.fields['gender'] = gender;
-    request.fields['dob'] = dob;
+    if(dob.isNotEmpty){
+      request.fields['dob'] = dob;
+    }
+
+    if(gender != null){
+      request.fields['gender'] = gender;
+    }
+
     if (image != '') {
       var userImage = await http.MultipartFile.fromPath('image', image);
       request.files.add(userImage);
     }
 
     var response = await request.send();
+    print(response.statusCode.toString()+'kkkkkkkkkkkk');
     response.stream.transform(utf8.decoder).listen((value) {
       if (isSuccessRequest(response.statusCode)) {
         UserModel userModel = UserModel.fromJson(jsonDecode(value)['data']['user_data']);

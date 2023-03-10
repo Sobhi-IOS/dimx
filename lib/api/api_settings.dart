@@ -9,6 +9,7 @@ class ApiSettings {
   static String forgetPassword = 'http://dimaxapp.live/api/v1/auth/forget_password?lang=${SharedPreferencesController().languageCode}';
   static String resetPassword = 'http://dimaxapp.live/api/v1/auth/reset_password?lang=${SharedPreferencesController().languageCode}';
   static String changePassword = 'http://dimaxapp.live/api/v1/change_password?lang=${SharedPreferencesController().languageCode}';
+  static String removeAccount = 'http://dimaxapp.live/api/v1/delete-account?lang=${SharedPreferencesController().languageCode}';
   static String updateUserProfile = 'http://dimaxapp.live/api/v1/update_profile?lang=${SharedPreferencesController().languageCode}';
   static String categories = 'http://dimaxapp.live/api/v1/categories?lang=${SharedPreferencesController().languageCode}';
   static String offers = 'http://dimaxapp.live/api/v1/offers?lang=${SharedPreferencesController().languageCode}';

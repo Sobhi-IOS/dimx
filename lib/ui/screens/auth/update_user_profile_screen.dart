@@ -28,7 +28,7 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> with Helper {
   late TextEditingController mobileController;
   late TextEditingController addressController;
   late TextEditingController bdController;
-  late bool isMale;
+  int isMale = -1;
   late ImagePicker _imagePicker;
   XFile? _pickedFile;
 
@@ -40,7 +40,7 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> with Helper {
     mobileController = TextEditingController(text: SharedPreferencesController().userModel.mobile);
     addressController = TextEditingController(text: SharedPreferencesController().userModel.address);
     bdController = TextEditingController(text: SharedPreferencesController().userModel.dob);
-    isMale = SharedPreferencesController().userModel.gender=='1'? true:false;
+    isMale = SharedPreferencesController().userModel.gender=='1'? 1:SharedPreferencesController().userModel.gender=='2'?2:-1;
     _imagePicker = ImagePicker();
   }
 
@@ -156,10 +156,10 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> with Helper {
                   child: CheckboxListTile(
                     checkColor: Colors.white,
                     activeColor: PRIMARY_COLOR,
-                    value: isMale,
+                    value: isMale==1,
                     onChanged: (var selected) {
                       setState(() {
-                        isMale = true;
+                        isMale = (isMale ==1 ? -1 : 1);
                       });
                     },
                     title: AppTextWidget(
@@ -180,10 +180,10 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> with Helper {
                   child: CheckboxListTile(
                     checkColor: Colors.white,
                     activeColor: PRIMARY_COLOR,
-                    value: !isMale,
+                    value: isMale==2,
                     onChanged: (var selected) {
                       setState(() {
-                        isMale = false;
+                        isMale = (isMale ==2 ? -1 :2);
                       });
                     },
                     title: AppTextWidget(
@@ -215,16 +215,9 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> with Helper {
     if (nameController.text.isNotEmpty &&
         emailController.text.isNotEmpty&&
         mobileController.text.isNotEmpty&&
-        addressController.text.isNotEmpty&&
-        bdController.text.isNotEmpty) {
-
-      if(!checkChangeData()){
+        addressController.text.isNotEmpty) {
         removeFocus();
         await update();
-      }else{
-        showSnackBar(context, text: 'data not changed',error: true);
-      }
-
     }
 
     else if (nameController.text.isEmpty){
@@ -239,9 +232,7 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> with Helper {
     else if(addressController.text.isEmpty){
       showSnackBar(context, text: 'address_is_required'.tr,error: true);
     }
-    else if(bdController.text.isEmpty){
-      showSnackBar(context, text: 'birthday_is_required'.tr,error: true);
-    }
+
   }
 
   Future pickDate(BuildContext context) async {
@@ -260,12 +251,13 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> with Helper {
   }
 
   Future<void> update() async {
+
     await AuthGetController.to.updateUserProfile(
         name: nameController.text,
         email: emailController.text,
         mobile: mobileController.text,
         address: addressController.text,
-        gender: isMale?'1':'2',
+        gender: isMale==-1?null:isMale==1 ? '1' : '2',
         dob: bdController.text,
         image: _pickedFile!=null ? _pickedFile!.path : '');
   }
@@ -290,19 +282,5 @@ class _UpdateUserProfileState extends State<UpdateUserProfile> with Helper {
     }
   }
 
-  bool checkChangeData(){
-    if(
-      nameController.text == AuthGetController.to.userModel.value.name &&
-      emailController.text == AuthGetController.to.userModel.value.email &&
-      mobileController.text == AuthGetController.to.userModel.value.mobile &&
-      addressController.text == AuthGetController.to.userModel.value.address&&
-      _pickedFile == null &&
-      bdController.text == AuthGetController.to.userModel.value.dob &&
-      SharedPreferencesController().userModel.gender == (isMale? '1':'2')
-    ){
-      return true;
-    }
-    return false;
-  }
 
 }

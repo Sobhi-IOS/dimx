@@ -25,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helper {
   late TextEditingController passwordController;
   late TextEditingController addressController;
   late TextEditingController bdController;
-  bool isMale = true;
+  int isMale = -1;
 
   @override
   void initState() {
@@ -68,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helper {
           padding: EdgeInsets.all(32.h),
           children: [
             SvgPicture.asset(
-              'assets/svg/logo_blue.svg',
+              'assets/svg/logo.svg',
               height: 60.h,
               width: 60.h,
             ),
@@ -134,7 +134,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helper {
                 controller: bdController,
                 suffix: const Icon(Icons.calendar_today, color: PRIMARY_COLOR),
                 textInputType: TextInputType.datetime,
-                label: 'birthday'.tr,
+                label: 'birthday'.tr  +' '+ 'option'.tr,
                 onTap: ()=>pickDate(context),
               ),
             ),
@@ -144,11 +144,12 @@ class _RegisterScreenState extends State<RegisterScreen> with Helper {
                 Expanded(
                   child: CheckboxListTile(
                     checkColor: Colors.white,
+                    subtitle: AppTextWidget(content: 'option'.tr,color: Colors.grey.shade500,fontSize: 10.sp,),
                     activeColor: PRIMARY_COLOR,
-                    value: isMale,
+                    value: isMale==1,
                     onChanged: (var selected) {
                       setState(() {
-                        isMale = true;
+                        isMale = (isMale ==1 ? -1 : 1);
                       });
                     },
                     title: AppTextWidget(
@@ -168,11 +169,13 @@ class _RegisterScreenState extends State<RegisterScreen> with Helper {
                 Expanded(
                   child: CheckboxListTile(
                     checkColor: Colors.white,
+                    subtitle: AppTextWidget(content: 'option'.tr,color: Colors.grey.shade500,fontSize: 10.sp,),
+
                     activeColor: PRIMARY_COLOR,
-                    value: !isMale,
+                    value: isMale==2,
                     onChanged: (var selected) {
                       setState(() {
-                        isMale = false;
+                        isMale = (isMale ==2 ? -1 :2);
                       });
                     },
                     title: AppTextWidget(
@@ -205,8 +208,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helper {
         emailController.text.isNotEmpty&&
         mobileController.text.isNotEmpty&&
         passwordController.text.isNotEmpty&&
-        addressController.text.isNotEmpty&&
-        bdController.text.isNotEmpty) {
+        addressController.text.isNotEmpty) {
       removeFocus();
       await register();
     }
@@ -226,9 +228,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helper {
     else if(addressController.text.isEmpty){
       showSnackBar(context, text: 'address_is_required'.tr,error: true);
     }
-    else if(bdController.text.isEmpty){
-      showSnackBar(context, text: 'birthday_is_required'.tr,error: true);
-    }
+
   }
 
   Future pickDate(BuildContext context) async {
@@ -253,7 +253,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helper {
       mobile: mobileController.text,
       password: passwordController.text,
       address: addressController.text,
-      gender: isMale ? '1' : '2',
+      gender: isMale==-1?null:isMale==1 ? '1' : '2',
       dob: bdController.text,
       passwordConfirmation: passwordController.text,
     );

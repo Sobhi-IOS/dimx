@@ -4,90 +4,14 @@ import 'package:get/get.dart';
 
 class AppLocale extends Translations {
   @override
-  // Map<String, Map<String, String>> get keys => {
-  //       'en': {
-  //         //errors
-  //         'no_internet_connection': 'Oops! No Internet Connection',
-  //         'server_error': 'Oops! Server Error 500',
-  //         'oops':'Oops!',
-  //
-  //
-  //         //login
-  //         'login': 'Login',
-  //         'email': 'Email',
-  //         'password': 'Password',
-  //         'forget_password': 'Forgot password?',
-  //         'dont_have_account': 'I don\'t have an account ?',
-  //         'sign_up': 'Sign Up',
-  //         'email_is_required': 'Email is required !',
-  //         'password_is_required': 'Password is required !',
-  //         'login_msg':'The data entered is being verified, please wait a moment',
-  //
-  //
-  //         // register
-  //         'register': 'Register',
-  //         'name': 'Name',
-  //         'mobile': 'Mobile',
-  //         'address': 'Address',
-  //         'birthday': 'Birthday',
-  //         'female': 'Female',
-  //         'male': 'Male',
-  //         'name_is_required': 'Name is required !',
-  //         'mobile_is_required': 'Mobile is required !',
-  //         'address_is_required': 'Address is required !',
-  //         'birthday_is_required': 'Birthday is required !',
-  //
-  //
-  //         //forget_password
-  //         'forget_password_title': 'Forget Password',
-  //         'forget_password_msg': 'Please enter your Email address and we will  send you a code to your email  to rest the password',
-  //         'send_code_msg': 'Code is being sent, please wait',
-  //         'continue':'Continue',
-  //
-  //         //reset_password
-  //         'reset_password':'Reset Password',
-  //         'reset_msg':'Enter 5 digit code verification, the code sent to your email',
-  //         'confirm_password':'Confirm Password',
-  //         'confirm_password_msg_error':'Password is not confirmed correctly!',
-  //
-  //         //change_password
-  //         'change_password':'Change Password',
-  //         'chang_password_msg':'',
-  //         'new_password':'New Password',
-  //         'old_password':'Old Password',
-  //
-  //         //update user profile
-  //         'edit_profile':'Edit Profile',
-  //         'update': 'Update',
-  //
-  //         //main screen
-  //         'home':'Home',
-  //         'category':'Category',
-  //         'settings':'Settings',
-  //         'offers':'Offers',
-  //
-  //
-  //         //validation
-  //         'field_is_required': 'This field is required!',
-  //         'enter_required_data': 'Enter required data!',
-  //
-  //         'send': 'Send',
-  //         'message': 'Message',
-  //         'update': 'Update',
-  //
-  //
-  //
-  //       },
-  //       'ar': {
-  //
-  //       }
-  //     };
   Map<String, Map<String, String>> get keys => {
     'en': {
       // onbording screen
       'get_start': 'Get started',
       'next': 'Next',
       'skip': 'Skip',
+      'option': '(option)',
+
 
       'title1': 'Welcome',
       'sub_title1': 'Welcome to the Dimax app, we are very happy to have you join us',
@@ -126,7 +50,7 @@ class AppLocale extends Translations {
       'chang_password_msg':'To change the password, you must fill in these fields correctly',
       'new_password':'New Password',
       'old_password':'Old Password',
-
+      'current_pass':'Current Password',
 
       //contact_us
       'contact_us_msg': 'Contact us if you need help or are having problems, we will respond as soon as possible',
@@ -253,12 +177,17 @@ class AppLocale extends Translations {
       'logout_msg': 'You are being logged out. Please wait a moment',
       'search': 'Search',
 
+
+      'remove_account': 'Delete Account',
+      'remove_account_msg': 'ِALERT if the account is deleted, you cannot recover the account data.',
+
     },
     'ar': {
       // onbording screen
       'get_start': 'أبدا الآن',
       'next': 'التالي',
       'skip': 'تخطي',
+      'option': '(اختياري)',
       'title1': 'مرحباً بك',
       'sub_title1': 'مرحباً بك في تطبيق ديماكس نحن سعداء جداً لانضممامك لنا',
 
@@ -427,6 +356,9 @@ class AppLocale extends Translations {
 
       'logout_msg': 'يتم الان تسجيل لخروج من فضلك انتظر قليلاً',
       'search': 'بحث',
+      'remove_account': 'حذف الحساب',
+      'remove_account_msg': 'تنبيه إذا تم حذف الحساب ، لا يمكنك استعادة بيانات الحساب.',
+      'current_pass':'كلمة المرور الحالية',
     }
   };
   static void changeLang() {
