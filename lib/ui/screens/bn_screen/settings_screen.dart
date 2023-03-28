@@ -160,7 +160,7 @@ class ProfileSettingsScreen extends StatelessWidget {
               replacement: SettingWidget(
                   label: 'login'.tr,
                   leading: const Icon(Icons.logout),
-                  onTap: () =>Get.offAll(const LoginScreen())
+                  onTap: () =>Get.to(const LoginScreen())
               ),
             ),
           ],

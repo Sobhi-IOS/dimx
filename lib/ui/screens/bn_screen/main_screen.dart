@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dimax/api/api_controller.dart';
+import 'package:dimax/firebase/fb_notifications.dart';
 import 'package:dimax/get/cart_getx_controller.dart';
 import 'package:dimax/get/network_get_controller.dart';
 import 'package:dimax/helpers/helper.dart';
@@ -32,14 +33,18 @@ class MainScreen extends StatefulWidget {
 
 }
 
-class _MainScreenState extends State<MainScreen> with Helper{
+class _MainScreenState extends State<MainScreen> with Helper,FbNotifications{
 
 
   int _currentSelect = 0;
   StreamSubscription? streamSubscription ;
 
   @override
-  void initState() {
+  void initState()
+  {
+    requestNotificationPermissions();
+    initializeForegroundNotificationForAndroid();
+    manageNotificationAction();
     refreshToken();
     super.initState();
   }

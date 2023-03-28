@@ -81,7 +81,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        AppTextWidget(content: 'category'.tr,fontSize: 16),
+                        GestureDetector(
+                          child: AppTextWidget(content: 'category'.tr,fontSize: 16),
+                          onTap: ()=> MainScreen.changePageIndex(context: context, index: 1),
+                        ),
                         GestureDetector(
                           child: AppTextWidget(content: 'see_more'.tr,textDecoration: TextDecoration.underline,fontSize: 16,),
                           onTap: ()=> MainScreen.changePageIndex(context: context, index: 1),
@@ -272,9 +275,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.all(10.h),
                     child: Row(
                       children: [
-                        AppTextWidget(content: 'last_added'.tr,fontSize: 16,),
-                        GestureDetector(child: AppTextWidget(content: 'see_more'.tr,fontSize: 16,textDecoration: TextDecoration.underline),
-                            onTap: ()=>Get.to(SubCategoryScreen(categoryId: controller.home.value!.categories!.first.id!))),
+                        AppTextWidget(content: 'last_added'.tr,fontSize: 16,)
+                        ,
                       ],
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     ),

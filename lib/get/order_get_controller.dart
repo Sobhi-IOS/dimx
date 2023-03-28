@@ -11,6 +11,7 @@ class OrderGetController extends GetxController with Helper{
   RxList<OrderModel> orders = <OrderModel>[].obs;
   RxList<OrderModel> filterOrder = <OrderModel>[].obs;
   OrderDetailsModel? orderDetailsModel;
+  int productOrderCount = 0;
   RxBool loading = false.obs;
   RxBool complete = false.obs;
 
@@ -40,9 +41,18 @@ class OrderGetController extends GetxController with Helper{
   }
 
 
+  getItemOrderCount(){
+    for(int i = 0 ; i<orderDetailsModel!.orderProducts!.length;i++){
+      productOrderCount += orderDetailsModel!.orderProducts![i].quantity!;
+    }
+  }
+
+
   Future<void> getOrderDetails({required int id}) async {
     loadingOrderDetails.value = true;
+    productOrderCount = 0;
     orderDetailsModel = await apiController.getOrderDetails(id: id);
+    getItemOrderCount();
     completeOrderDetails.value = (orderDetailsModel != null);
     loadingOrderDetails.value = false;
     update();

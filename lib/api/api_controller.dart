@@ -11,7 +11,6 @@ import 'package:dimax/models/product_details_model.dart';
 import 'package:dimax/models/product_model.dart';
 import 'package:dimax/models/sub_category_model.dart';
 import 'package:dimax/models/user_model.dart';
-import 'package:dimax/ui/screens/auth/login_screen.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -576,7 +575,7 @@ class ApiController extends ApiHelper{
   }
 
   Future<List<OrderModel>> getOrder() async {
-    var response = await http.get(getUrl(ApiSettings.order), headers: header);
+    var response = await http.get(getUrl(ApiSettings.order+'?lang=${SharedPreferencesController().languageCode}'), headers: header);
     if (isSuccessRequest(response.statusCode)) {
       var data = jsonDecode(response.body)['data'] as List;
       List<OrderModel> orders  = data.map((e) => OrderModel.fromJson(e)).toList();
@@ -593,6 +592,7 @@ class ApiController extends ApiHelper{
 
   Future<OrderDetailsModel?> getOrderDetails({required int id}) async {
     var response = await http.get(getUrl(ApiSettings.orderDetails(orderID: id)), headers: header);
+    print(jsonDecode(response.body)['data']);
     if (isSuccessRequest(response.statusCode)) {
       var data = jsonDecode(response.body)['data'];
       OrderDetailsModel orderDetailsModel = OrderDetailsModel.fromJson(data);
@@ -636,7 +636,7 @@ class ApiController extends ApiHelper{
     }else {
       handleServerError(Get.context);
     }
-    return jsonDecode(response.body)['message'];;
+    return jsonDecode(response.body)['message'];
   }
   //USER LOGIN
   Future<bool> loginGuest({required String newFcm}) async {

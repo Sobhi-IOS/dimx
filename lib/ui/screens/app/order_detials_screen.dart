@@ -118,7 +118,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with Helper{
                           ),
 
                           AppTextWidget(
-                            content: '${OrderGetController.to.orderDetailsModel!.orderProducts!.length}',
+                            content: '${OrderGetController.to.productOrderCount}',
                             fontSize: 16,
                             color: PRIMARY_TEXT_COLOR,
                             fontWeight: FontWeight.w500,
@@ -127,10 +127,52 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with Helper{
                         ],
                       ),
                       SizedBox(height: 10.h,),
+
+
+
+                      // ====
+                      Visibility(
+                        visible: SharedPreferencesController().isMarketed,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(Icons.phone_rounded),
+                                SizedBox(width: 5.w,),
+                                AppTextWidget(
+                                  content: 'mobile'.tr +': ',
+                                  fontSize: 16,
+                                  color: PRIMARY_TEXT_COLOR,
+                                  fontWeight: FontWeight.w500,
+                                  // line: 2,
+                                ),
+
+                                AppTextWidget(
+                                  content: '${OrderGetController.to.orderDetailsModel!.order!.userModel!.mobile}',
+                                  fontSize: 16,
+                                  color: PRIMARY_TEXT_COLOR,
+                                  fontWeight: FontWeight.w500,
+                                  // line: 2,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10.h,),
+                          ],
+                        ),
+                      ),
+
+                      // ====
                       Row(
                         children: [
                           const Icon(Icons.location_on),
                           SizedBox(width: 5.w,),
+                          AppTextWidget(
+                            content: 'address'.tr + ': ',
+                            fontSize: 16,
+                            color: PRIMARY_TEXT_COLOR,
+                            fontWeight: FontWeight.w500,
+                            // line: 2,
+                          ),
                           Expanded(
                             child: AppTextWidget(
                               content: OrderGetController.to.orderDetailsModel!.order!.address??'',
@@ -143,6 +185,42 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with Helper{
                           ),
                         ],
                       ),
+
+                      SizedBox(height: 10.h,),
+
+                      Visibility(
+                        visible: OrderGetController.to.orderDetailsModel!.order!.note != null,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(Icons.event_note_sharp),
+                                SizedBox(width: 5.w,),
+                                AppTextWidget(
+                                  content: 'note'.tr + ': ',
+                                  fontSize: 16,
+                                  color: PRIMARY_TEXT_COLOR,
+                                  fontWeight: FontWeight.w500,
+                                  // line: 2,
+                                ),
+                                Expanded(
+                                  child: AppTextWidget(
+                                    content: OrderGetController.to.orderDetailsModel!.order!.note??'',
+                                    fontSize: 14,
+                                    color: PRIMARY_TEXT_COLOR,
+                                    line: 3,
+                                    fontWeight: FontWeight.w500,
+                                    // line: 2,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10.h,),
+                          ],
+                        ),
+                      ),
+
+
                     ],
                   ),
                 ),
@@ -222,11 +300,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with Helper{
                             ),
                           ],
                         ),
+
                       ],
                     ),
                     const Spacer(),
                     Visibility(
-                      visible: SharedPreferencesController().isUser,
+                      visible: (SharedPreferencesController().isUser && controller.orderDetailsModel!.order!.invoiceNumber == null),
                       child: SizedBox(child: AppElevatedButton(text: 'cancel_order'.tr,fontSize: 14, onPressed: ()async{
                         String status = await OrderGetController.to.cancelOrder(id: controller.orderDetailsModel!.order!.id!);
                         showAwesomeDialog(
@@ -250,4 +329,6 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with Helper{
       ),
     );
   }
+
+
 }

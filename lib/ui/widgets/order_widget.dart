@@ -49,7 +49,7 @@ class OrderWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20.h,),
+            SizedBox(height: 8.h,),
 
             Row(
               children: [
@@ -71,14 +71,14 @@ class OrderWidget extends StatelessWidget {
               ],
             ),
 
-            SizedBox(height: 10.h,),
+            SizedBox(height: 8.h,),
 
             Row(
               children: [
                 CircleAvatar(backgroundColor: PRIMARY_COLOR,radius: 8.h),
                 SizedBox(width: 5.w,),
                 AppTextWidget(
-                  content: '${orderModel.status}',
+                  content: orderModel.status??'',
                   fontSize: 16,
                   color: PRIMARY_TEXT_COLOR,
                   fontWeight: FontWeight.w500,

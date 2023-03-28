@@ -1,13 +1,16 @@
 import 'package:dimax/models/order_model.dart';
+import 'package:dimax/models/user_model.dart';
 
 class OrderDetailsModel {
   OrderModel? order;
+  UserModel? userModel;
   List<OrderProducts>? orderProducts;
 
   OrderDetailsModel({this.order, this.orderProducts});
 
   OrderDetailsModel.fromJson(Map<String, dynamic> json) {
     order = json['order'] != null ? OrderModel.fromJson(json['order']) : null;
+    userModel = json['user_data'] != null ?  UserModel.fromJson(json['user_data']) : null;
     if (json['order_products'] != null) {
       orderProducts = <OrderProducts>[];
       json['order_products'].forEach((v) {

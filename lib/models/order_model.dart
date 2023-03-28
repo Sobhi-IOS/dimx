@@ -1,3 +1,5 @@
+import 'package:dimax/models/user_model.dart';
+
 class OrderModel {
   int? id;
   num? fainalTotal;
@@ -11,6 +13,8 @@ class OrderModel {
   String? createdAt;
   String? delegateNumber;
   String? invoiceNumber;
+  UserModel? userModel;
+
 
   OrderModel();
 
@@ -27,5 +31,7 @@ class OrderModel {
     createdAt = json['created_at'];
     delegateNumber = json['delegate_number'];
     invoiceNumber = json['invoice_number'];
+    userModel = json['user_data'] != null ?  UserModel.fromJson(json['user_data']) : null;
+
   }
 }

@@ -143,7 +143,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> with Helper{
                 desc: 'successfully_msg'.tr,
                 buttonText: 'close'.tr,
                 dialogType: DialogType.success,
-                onTap: () {Get.to(const MainScreen()); }
+                onTap: () {Get.offAll(const MainScreen()); }
             );
           }else{
             showAwesomeDialog(context: context,
@@ -151,7 +151,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> with Helper{
                 desc: 'operation_failed_msg'.tr,
                 buttonText: 'close'.tr,
                 dialogType: DialogType.error,
-                onTap: () {Get.to(const MainScreen()); }
+                onTap: () {Get.offAll(const MainScreen()); }
             );
           }
         }

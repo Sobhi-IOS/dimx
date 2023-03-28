@@ -36,7 +36,7 @@ class ApiSettings {
   static String activationAccount = 'http://dimaxapp.live/api/v1/activation_account?lang=${SharedPreferencesController().languageCode}';
   static String checkOut = 'http://dimaxapp.live/api/v1/checkout?lang=${SharedPreferencesController().languageCode}';
 
-  static String order = 'http://dimaxapp.live/api/v1/user_orders?lang=${SharedPreferencesController().languageCode}';
+  static String order = 'http://dimaxapp.live/api/v1/user_orders';
   static String orderDetails ({required int orderID}) => 'http://dimaxapp.live/api/v1/order_Details/$orderID?lang=${SharedPreferencesController().languageCode}';
 
 

@@ -23,9 +23,6 @@ class _LaunchScreenState extends State<LaunchScreen>with FbNotifications{
   void initState() {
     super.initState();
     Get.put(InterNetGetController());
-    requestNotificationPermissions();
-    initializeForegroundNotificationForAndroid();
-    manageNotificationAction();
     if(SharedPreferencesController().isFirstTime){
       route = const OnBoardingScreen();
     }

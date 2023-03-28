@@ -19,7 +19,6 @@ class SubCategoryWidget extends StatelessWidget with Helper{
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 8.h),
         margin: EdgeInsets.symmetric(vertical: 6.h,horizontal: 3.w),
-        width: 130.w,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.h),

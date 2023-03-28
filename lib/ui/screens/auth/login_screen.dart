@@ -57,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> with Helper{
         appBar: AppBar(
           centerTitle: true,
           title: AppTextWidget(content: 'login'.tr, color: PRIMARY_TEXT_COLOR, fontSize: 18,),
+
         ),
 
         body: ListView(

@@ -60,6 +60,8 @@ class _ActivateAccountScreenState extends State<ActivateAccountScreen> with Help
             AppTextWidget(
               content: 'activate_account_msg'.tr,
               color: Colors.grey,
+              line: 3,
+              textAlign: TextAlign.center,
               fontSize: 15,
               fontWeight: FontWeight.normal,
             ),

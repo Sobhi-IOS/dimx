@@ -60,7 +60,7 @@ class AppLocale extends Translations {
       'home':'Home',
       'category':'Category',
       'favorite':'Favorite',
-      'order':'Order',
+      'order':'Orders',
       'settings':'Settings',
       'offers':'Offers',
 
@@ -137,6 +137,10 @@ class AppLocale extends Translations {
       'color': 'color',
       'size': 'size',
       'quantity': 'quantity',
+      'note': 'Note',
+      'features':'Features',
+
+
 
 
       'items_available': 'Items Available',
@@ -233,7 +237,7 @@ class AppLocale extends Translations {
 
       //main_screen
       'home':'الرئيسية',
-      'category':'التصنيفات',
+      'category':'الفئات',
       'favorite':'المفضلة',
       'order':'الطلبات',
       'settings':'الاعدادات',
@@ -285,6 +289,7 @@ class AppLocale extends Translations {
       'see_more':'المزيد',
       'last_added':'المضافة مؤخرا',
       'special_product':'منتجات مميزة',
+      'features':'المواصفات',
 
       'login_alert_title':'تنبية!',
       'login_alert_desc':'لاستخدام هذة الخاصية من فضلك قم بتسجيل الدخول',
@@ -315,6 +320,8 @@ class AppLocale extends Translations {
       'color': 'اللون',
       'size': 'المقاس',
       'quantity': 'الكمية',
+      'note': 'الملاحظات',
+
 
 
       'items_available': 'العناصر الموجودة',
