@@ -20,7 +20,7 @@ class OrderDetailsWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            NetworkImageWidget(height: 80.h,boxFit: BoxFit.cover ,width: 80.h, image:  orderProducts.mainImage!)
+            NetworkImageWidget(height: 80.h,boxFit: BoxFit.cover ,width: 80.h, image:  orderProducts.color!)
             ,SizedBox(width: 8.w,),
             Expanded(
               child: Column(
@@ -41,14 +41,7 @@ class OrderDetailsWidget extends StatelessWidget {
                     line: 2,
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 5.h,),
-                  orderProducts.color != null ? AppTextWidget(
-                    content: 'color'.tr +': '+ (orderProducts.color??''),
-                    fontSize: 14,
-                    color: Colors.black,
-                    line: 2,
-                    textAlign: TextAlign.center,
-                  ):Container(),
+
                   SizedBox(height: 5.h,),
                   orderProducts.size != null ? AppTextWidget(
                     content: 'size'.tr +': '+ (orderProducts.size??''),

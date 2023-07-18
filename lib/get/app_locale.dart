@@ -136,9 +136,10 @@ class AppLocale extends Translations {
       'deserved_amount': 'Deserved amount',
       'color': 'color',
       'size': 'size',
-      'quantity': 'quantity',
+      'quantity': 'Quantity',
       'note': 'Note',
       'features':'Features',
+      'sales_representative':'Sales Representative',
 
 
 
@@ -366,6 +367,9 @@ class AppLocale extends Translations {
       'remove_account': 'حذف الحساب',
       'remove_account_msg': 'تنبيه إذا تم حذف الحساب ، لا يمكنك استعادة بيانات الحساب.',
       'current_pass':'كلمة المرور الحالية',
+
+      'sales_representative':'مندوب المبيعات',
+
     }
   };
   static void changeLang() {

@@ -24,6 +24,7 @@ class AppTextWidget extends StatelessWidget with Helper{
     this.decorationColor = Colors.transparent,
     this.line,
     this.fontFamily,
+
   }) : super(key: key);
 
   @override
@@ -41,6 +42,7 @@ class AppTextWidget extends StatelessWidget with Helper{
         fontSize: getFontSize(fontSize),
         fontFamily: getFontFamily(fontFamily: fontFamily),
         overflow: TextOverflow.ellipsis,
+
       ),
     );
   }

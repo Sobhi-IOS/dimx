@@ -17,6 +17,7 @@ class ProductDetailsModel {
   bool? isFavorite;
   bool? isSpecial;
   int? quantity;
+  String? color;
 
   ProductDetailsModel();
 
@@ -36,6 +37,7 @@ class ProductDetailsModel {
     descAdvanceEn = json['desc_advance_en'];
     descAdvanceAr = json['desc_advance_ar'];
     size = json['size'];
+    color = json['color'];
     quantity = json['quantity'];
     mainImage = json['main_image'];
     if (json['images'] != null) {

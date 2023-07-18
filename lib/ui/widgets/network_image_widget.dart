@@ -19,6 +19,7 @@ class NetworkImageWidget extends StatelessWidget {
       height: height,
       width: width,
       imageUrl: image,
+
       progressIndicatorBuilder: (context, url, downloadProgress) => Center(
         child: Shimmer.fromColors(
           highlightColor: Colors.grey.shade50,

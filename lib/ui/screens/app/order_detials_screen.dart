@@ -105,6 +105,30 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with Helper{
                       SizedBox(height: 10.h,),
 
 
+                      OrderGetController.to.orderDetailsModel!.order!.delegateNumber!= null?Row(
+                        children: [
+
+                          const Icon(Icons.phone_android),
+                          SizedBox(width: 5.w,),
+                          AppTextWidget(
+                            content: 'sales_representative'.tr +': ',
+                            fontSize: 16,
+                            color: PRIMARY_TEXT_COLOR,
+                            fontWeight: FontWeight.w500,
+                            // line: 2,
+                          ),
+
+                          AppTextWidget(
+                            content: OrderGetController.to.orderDetailsModel!.order!.delegateNumber.toString(),
+                            fontSize: 16,
+                            color: PRIMARY_TEXT_COLOR,
+                            fontWeight: FontWeight.w500,
+                            // line: 2,
+                          ),
+                        ],
+                      ):Container(),
+                      SizedBox(height: OrderGetController.to.orderDetailsModel!.order!.delegateNumber!= null ?10.h:0,),
+
                       Row(
                         children: [
                           const Icon(Icons.shopping_cart),

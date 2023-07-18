@@ -32,11 +32,11 @@ class CartWidget extends StatelessWidget {
                   spreadRadius: 0)
             ],
           ),
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.all(15.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              NetworkImageWidget(height: 80.h, width: 80.h, image: productModel.mainImage!),
+              NetworkImageWidget(height: 80.h, width: 80.h, image: productModel.color!),
               SizedBox(
                 width: 15.w,
               ),
