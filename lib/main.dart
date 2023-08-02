@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:dimax/firebase/fb_notifications.dart';
 import 'package:dimax/firebase_options.dart';
 import 'package:dimax/get/app_locale.dart';
@@ -34,6 +35,10 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       builder: (context,child) => GetMaterialApp(
         title: 'Dimax',
+        builder: BotToastInit(),
+        navigatorObservers: [
+          BotToastNavigatorObserver(),
+        ],
         locale: Locale(SharedPreferencesController().languageCode),
         translations: AppLocale(),
         debugShowCheckedModeBanner: false,

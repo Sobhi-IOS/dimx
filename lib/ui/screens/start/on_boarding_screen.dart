@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
 
@@ -19,7 +20,7 @@ class OnBoardingScreen extends StatefulWidget {
   _OnBoardingScreenState createState() => _OnBoardingScreenState();
 }
 
-class _OnBoardingScreenState extends State<OnBoardingScreen> with Helper{
+class _OnBoardingScreenState extends State<OnBoardingScreen> with Helper {
   int currentIndex = 0;
   late PageController pageController;
 
@@ -34,6 +35,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> with Helper{
     pageController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +77,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> with Helper{
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppTextButton(
-                        text: 'skip'.tr,
-                        fontWeight: FontWeight.normal,
-                        textColor: PRIMARY_TEXT_COLOR,
-                        onPressed: skip,
-                    fontSize: 18,),
+                      text: 'skip'.tr,
+                      fontWeight: FontWeight.normal,
+                      textColor: PRIMARY_TEXT_COLOR,
+                      onPressed: skip,
+                      fontSize: 18,
+                    ),
                     Row(
                       children: [
                         OnBoardingIndicator(
@@ -104,9 +107,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> with Helper{
                 ),
               ),
               replacement: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 117.w, vertical: 45.h),
+                padding:
+                    EdgeInsets.symmetric(horizontal: 117.w, vertical: 45.h),
                 child: AppElevatedButton(
-                  onPressed: (){
+                  onPressed: () {
                     loginGuest(context);
                   },
                   text: 'get_start'.tr,
@@ -127,7 +131,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> with Helper{
     );
   }
 
-  void goToNextPage() {
+  void goToNextPage() async {
     if (currentIndex != 2) {
       pageController.nextPage(
         duration: const Duration(milliseconds: 800),
@@ -137,21 +141,32 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> with Helper{
   }
 
 
-  void loginGuest(context) async{
+  void loginGuest(context) async {
+
     bool status = await checkInternet(context);
-    if(status){
+
+    if (status) {
+      Helper.showLoading();
+
       String? fcmToken = await FirebaseMessaging.instance.getToken();
       bool statusLogin = await AuthGetController.to.guestLogin(newFcm: fcmToken!);
-      if(statusLogin){
+      if (statusLogin) {
         SharedPreferencesController().setIsFirstTime(false);
         bool store = await SharedPreferencesController().setFcmToken(fcmToken);
-        if(store){
+        Helper.hideLoading();
+
+        if (store) {
           Get.off(const MainScreen());
         }
       }
-
-    }else{
+    } else {
       showSnackBar(context, text: 'يرجى التحقق من الاتصال بالانترنت');
     }
+
+
   }
+
+
+
+
 }

@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dimax/local_storage/shared_preferences.dart';
 import 'package:dimax/ui/screens/auth/login_screen.dart';
@@ -112,6 +113,27 @@ class Helper {
     ).show();
   }
 
+  static showLoading() {
+    return BotToast.showCustomLoading(
+      toastBuilder: (cancelFunc) {
+        return Container(
+          height: 60.h,
+          width: 60.w,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.r), color: Colors.grey),
+          child: Center(
+            child: CircularProgressIndicator(
+              backgroundColor: PRIMARY_COLOR,
+              color: Colors.white,
+            ),
+          ),
+        );
+      },
+    );
+  }
+  static hideLoading() {
+    return BotToast.closeAllLoading();
+  }
 
   showAwesomeDialog({
     required BuildContext context,
