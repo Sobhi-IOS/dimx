@@ -423,8 +423,18 @@ class ApiController extends ApiHelper{
   }
 
   Future<HomeModel?> initHome() async {
-    var response = await http.get(getUrl(ApiSettings.home), headers: header);
+    print('Home HI}');
+
+    var response = await http.get(getUrl(ApiSettings.home), headers: header).then((value) {
+      print(value.statusCode);
+      return value ;
+    }).catchError((error, stackTrace) {
+      print(error.toString());
+      return error;
+    });
+    print('Home :: ${response.statusCode}');
     if (isSuccessRequest(response.statusCode)) {
+
       var data = jsonDecode(response.body)['data'];
       HomeModel home = HomeModel.fromJson(data);
       return home;
